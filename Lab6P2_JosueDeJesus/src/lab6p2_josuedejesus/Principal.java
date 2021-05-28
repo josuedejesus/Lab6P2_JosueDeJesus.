@@ -322,19 +322,12 @@ public class Principal extends javax.swing.JFrame {
 
     private void butt_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butt_guardarMouseClicked
         // TODO add your handling code here:
-
         DefaultListModel modelo
                 = (DefaultListModel) jl_personas.getModel();
-        modelo.addElement(new Persona(nombreTxt.getText(), apellidoTxt.getText(),             
-                (String) cb_personas.getSelectedItem(),
-                (Integer) edadTxt.getValue()
-        )
-        );
-        
+        modelo.addElement(new Persona(nombreTxt.getText(), apellidoTxt.getText(),(String)nacionalidadTxt.getText(),(Integer) Integer.parseInt(edadTxt.getValue().toString())));
+                
         jl_personas.setModel(modelo);
         nombreTxt.setText("");
-        edadTxt.setValue(20);
-        cb_personas.setSelectedIndex(0);
     }//GEN-LAST:event_butt_guardarMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -347,15 +340,15 @@ public class Principal extends javax.swing.JFrame {
             //obtener la persona a guardar
             DefaultListModel modeloLISTA
                     = (DefaultListModel) jl_personas.getModel();
-            String nacionalidad, apellido, nombre;
+            String nacionalidad, nombre, apellido;
             int edad;
+            apellido = ((Persona) modeloLISTA.get(
+                            jl_personas.getSelectedIndex())).
+                            getApellido();
             nacionalidad
                     = ((Persona) modeloLISTA.get(
                             jl_personas.getSelectedIndex())).
                             getNacionalidad();
-            apellido = ((Persona) modeloLISTA.get(
-                    jl_personas.getSelectedIndex())).
-                    getNombre();
             nombre = ((Persona) modeloLISTA.get(
                     jl_personas.getSelectedIndex())).
                     getNombre();
@@ -371,7 +364,7 @@ public class Principal extends javax.swing.JFrame {
                     //si ya existe le agrega la persona
                     DefaultMutableTreeNode p
                             = new DefaultMutableTreeNode(
-                                    new Persona(nombre, apellido, nacionalidad, edad)
+                                    new Persona(nombre, apellido, nacionalidad, edad )
                             );
                     ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
                     centinela = 1;
@@ -383,7 +376,7 @@ public class Principal extends javax.swing.JFrame {
                         = new DefaultMutableTreeNode(nacionalidad);
                 DefaultMutableTreeNode p
                         = new DefaultMutableTreeNode(
-                                new Persona(nombre, apellido, nacionalidad, edad)
+                                new Persona(nombre,apellido, nacionalidad, edad)
                         );
                 n.add(p);
                 raiz.add(n);
