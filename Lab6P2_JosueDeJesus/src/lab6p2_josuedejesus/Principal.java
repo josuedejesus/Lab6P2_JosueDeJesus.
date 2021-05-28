@@ -5,6 +5,8 @@
  */
 package lab6p2_josuedejesus;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -61,9 +63,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         cb_personas = new javax.swing.JComboBox<>();
         butt_crear = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jl_personas = new javax.swing.JList<>();
         jButton2 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jl_personas = new javax.swing.JList<>();
 
         jLabel1.setText("jLabel1");
 
@@ -241,14 +243,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane2.setViewportView(jl_personas);
-
         jButton2.setText("Agregar");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
             }
         });
+
+        jScrollPane3.setViewportView(jl_personas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -267,9 +269,9 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(butt_crear)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,18 +282,19 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(21, 21, 21)
-                .addComponent(cb_personas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(butt_crear)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(cb_personas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(butt_crear)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(145, 145, 145))))
         );
@@ -322,12 +325,28 @@ public class Principal extends javax.swing.JFrame {
 
     private void butt_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butt_guardarMouseClicked
         // TODO add your handling code here:
-        DefaultListModel modelo
-                = (DefaultListModel) jl_personas.getModel();
-        modelo.addElement(new Persona(nombreTxt.getText(), apellidoTxt.getText(),(String)nacionalidadTxt.getText(),(Integer) Integer.parseInt(edadTxt.getValue().toString())));
+        DefaultTreeModel m = (DefaultTreeModel) jt_personas.getModel();
+        DefaultMutableTreeNode raiz
+                = (DefaultMutableTreeNode) m.getRoot();
+        DefaultMutableTreeNode nodo_persona;
+        
+        if(cb_personas.getSelectedItem().equals("Jugadores"))
+        {
+            nodo_persona
+                = new DefaultMutableTreeNode(
+                        "Jugadores");
+        DefaultMutableTreeNode anio;
+        anio = new DefaultMutableTreeNode(
+                new Persona(nombreTxt.getText(), apellidoTxt.getText(),
+                                (String) nacionalidadTxt.getText(),(Integer) edadTxt.getValue()));
                 
-        jl_personas.setModel(modelo);
-        nombreTxt.setText("");
+
+        nodo_persona.add(anio);
+        raiz.add(nodo_persona);
+        m.reload();
+        }
+        
+        
     }//GEN-LAST:event_butt_guardarMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -456,7 +475,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JDialog jd_jugadores;
     private javax.swing.JList<String> jl_personas;
     private javax.swing.JTree jt_personas;
@@ -467,4 +486,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField numeroTxt;
     private javax.swing.JTextField tarjetasTxt;
     // End of variables declaration//GEN-END:variables
+
+    DefaultMutableTreeNode nodo_seleccionado;
+    Persona persona_seleccionada;
+    
 }
