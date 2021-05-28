@@ -11,8 +11,8 @@ package lab6p2_josuedejesus;
  */
 public class Jugador extends Persona{
     private int numero;
-    private int jugados;
-    private int ganados;
+    private int partidos;
+    private int copas;
     private int tarjetas;
     private int contrato;
 
@@ -20,11 +20,11 @@ public class Jugador extends Persona{
         super();
     }
 
-    public Jugador(int numero, int jugados, int ganados, int tarjetas, int contrato, String nombre, String apellido, String nacionalidad, int edad) {
+    public Jugador(int numero, int partidos, int copas, int tarjetas, int contrato, String nombre, String apellido, String nacionalidad, int edad) {
         super(nombre, apellido, nacionalidad, edad);
         this.numero = numero;
-        this.jugados = jugados;
-        this.ganados = ganados;
+        this.partidos = partidos;
+        this.copas = copas;
         this.tarjetas = tarjetas;
         this.contrato = contrato;
     }
@@ -37,20 +37,20 @@ public class Jugador extends Persona{
         this.numero = numero;
     }
 
-    public int getJugados() {
-        return jugados;
+    public int getPartidos() {
+        return partidos;
     }
 
-    public void setJugados(int jugados) {
-        this.jugados = jugados;
+    public void setPartidos(int jugados) {
+        this.partidos = jugados;
     }
 
-    public int getGanados() {
-        return ganados;
+    public int getCopas() {
+        return copas;
     }
 
-    public void setGanados(int ganados) {
-        this.ganados = ganados;
+    public void setCopas(int ganados) {
+        this.copas = ganados;
     }
 
     public int getTarjetas() {
@@ -71,7 +71,7 @@ public class Jugador extends Persona{
 
     @Override
     public String toString() {
-        return "Jugador{" + "numero=" + numero + ", jugados=" + jugados + ", ganados=" + ganados + ", tarjetas=" + tarjetas + ", contrato=" + contrato + '}';
+        return "Jugador{" + "numero=" + numero + ", jugados=" + partidos + ", ganados=" + copas + ", tarjetas=" + tarjetas + ", contrato=" + contrato + '}';
     }
 
     

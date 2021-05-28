@@ -6,6 +6,8 @@
 package lab6p2_josuedejesus;
 
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -37,7 +39,7 @@ public class Principal extends javax.swing.JFrame {
         nacionalidadTxt = new javax.swing.JTextField();
         edadTxt = new javax.swing.JTextField();
         numeroTxt = new javax.swing.JTextField();
-        partidosTxt = new javax.swing.JTextField();
+        jugadasTxt = new javax.swing.JTextField();
         copasTxt = new javax.swing.JTextField();
         tarjetasTxt = new javax.swing.JTextField();
         contratoTxt = new javax.swing.JTextField();
@@ -50,6 +52,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        butt_guardar = new javax.swing.JButton();
+        butt_cancel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_personas = new javax.swing.JTree();
         jLabel2 = new javax.swing.JLabel();
@@ -86,6 +90,20 @@ public class Principal extends javax.swing.JFrame {
         jLabel11.setText("Cantidad de tarjetas");
 
         jLabel12.setText("Contrato");
+
+        butt_guardar.setText("Guardar");
+        butt_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                butt_guardarMouseClicked(evt);
+            }
+        });
+
+        butt_cancel.setText("Cancelar");
+        butt_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butt_cancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_jugadoresLayout = new javax.swing.GroupLayout(jd_jugadores.getContentPane());
         jd_jugadores.getContentPane().setLayout(jd_jugadoresLayout);
@@ -125,12 +143,18 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(contratoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tarjetasTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(copasTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(partidosTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jugadasTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(131, 131, 131))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_jugadoresLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(270, 270, 270))
+            .addGroup(jd_jugadoresLayout.createSequentialGroup()
+                .addGap(219, 219, 219)
+                .addComponent(butt_guardar)
+                .addGap(64, 64, 64)
+                .addComponent(butt_cancel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jd_jugadoresLayout.setVerticalGroup(
             jd_jugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +181,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel6)))
                     .addGroup(jd_jugadoresLayout.createSequentialGroup()
                         .addGroup(jd_jugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(partidosTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jugadasTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(jd_jugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -175,7 +199,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jd_jugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numeroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGroup(jd_jugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(butt_guardar)
+                    .addComponent(butt_cancel))
+                .addGap(67, 67, 67))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -244,13 +272,10 @@ public class Principal extends javax.swing.JFrame {
     private void butt_crearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butt_crearMouseClicked
         // TODO add your handling code here:
         String persona = "";
-        
-        if(cb_personas.getSelectedItem().equals("Jugador"))
-        {
+
+        if (cb_personas.getSelectedItem().equals("Jugador")) {
             abreJugadores();
-        }
-        else
-        {
+        } else {
             JOptionPane.showMessageDialog(this, "No");
         }
     }//GEN-LAST:event_butt_crearMouseClicked
@@ -258,6 +283,49 @@ public class Principal extends javax.swing.JFrame {
     private void nacionalidadTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nacionalidadTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nacionalidadTxtActionPerformed
+
+    private void butt_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butt_cancelActionPerformed
+        // TODO add your handling code here:
+        jd_jugadores.setVisible(false);
+        this.setVisible(true);
+    }//GEN-LAST:event_butt_cancelActionPerformed
+
+    private void butt_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butt_guardarMouseClicked
+        // TODO add your handling code here:
+        
+        
+        DefaultTreeModel modeloARBOL
+                = (DefaultTreeModel) jt_personas.getModel();
+        DefaultMutableTreeNode raiz
+                = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+        
+        String nombre, apellido, nacionalidad;
+        int edad, numero, jugadas, copas, tarjetas, contrato;
+        
+        nombre = nombreTxt.getText();
+        apellido = apellidoTxt.getText();
+        nacionalidad = nacionalidadTxt.getText();
+        edad = Integer.parseInt(edadTxt.getText());
+        numero = Integer.parseInt(numeroTxt.getText());
+        jugadas = Integer.parseInt(jugadasTxt.getText());
+        copas = Integer.parseInt(copasTxt.getText());
+        tarjetas = Integer.parseInt(tarjetasTxt.getText());
+        contrato = Integer.parseInt(contratoTxt.getText());
+        
+        int na = -1;
+        for (int i = 0; i < raiz.getChildCount(); i++) {
+                if (raiz.getChildAt(i).toString().
+                        equals(nacionalidad)) {
+                    //si ya existe le agrega la persona
+                    DefaultMutableTreeNode p
+                            = new DefaultMutableTreeNode(
+                                    new Jugador(nombre, apellido, nacionalidad, edad, numero, partido, copas, tarjetas, contrato)
+                            );
+                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                    na = 1;
+                }
+            }
+    }//GEN-LAST:event_butt_guardarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -293,7 +361,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void abreJugadores() {
         this.setVisible(false);
         jd_jugadores.setModal(true);
@@ -304,7 +372,9 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoTxt;
+    private javax.swing.JButton butt_cancel;
     private javax.swing.JButton butt_crear;
+    private javax.swing.JButton butt_guardar;
     private javax.swing.JComboBox<String> cb_personas;
     private javax.swing.JTextField contratoTxt;
     private javax.swing.JTextField copasTxt;
@@ -325,11 +395,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDialog jd_jugadores;
     private javax.swing.JTree jt_personas;
+    private javax.swing.JTextField jugadasTxt;
     private javax.swing.JPopupMenu menu_popup;
     private javax.swing.JTextField nacionalidadTxt;
     private javax.swing.JTextField nombreTxt;
     private javax.swing.JTextField numeroTxt;
-    private javax.swing.JTextField partidosTxt;
     private javax.swing.JTextField tarjetasTxt;
     // End of variables declaration//GEN-END:variables
 }
